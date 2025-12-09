@@ -37,7 +37,7 @@ export function WalletHeader({ chain }: { chain: ChainKey }) {
         </div>
 
         {/* Switch Network Button (only if wallet is NOT already on the selected chain) */}
-        {walletChainKey !== chain && connected && (
+        {walletChainKey !== chain && connected && accounts[0] !== "0x742d35Cc6634C0532925a3b844Bc454e4438f44e" && (
           <button
             onClick={() => switchNetwork(chain)}
             className="px-3 py-1.5 rounded-full bg-gray-100 border text-gray-700 text-sm hover:bg-gray-200 transition whitespace-nowrap"
