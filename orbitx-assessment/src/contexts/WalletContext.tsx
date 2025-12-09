@@ -3,9 +3,11 @@ import Web3 from "web3";
 
 export const WalletContext = createContext({
   accounts: [] as string[],
+  setAccounts: (accounts: string[]) => {},
   disconnectFromWallet: async () => {},
   connectToWallet: async () => {},
   chainId: null as bigint | null,
+  useMockData: () => {},
 });
 
 export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
@@ -33,9 +35,21 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const useMockData = () => {
+    console.log("CLICKED");
+    setAccounts(["0x742d35Cc6634C0532925a3b844Bc454e4438f44e"]);
+  };
+
   return (
     <WalletContext.Provider
-      value={{ accounts, connectToWallet, disconnectFromWallet, chainId }}
+      value={{
+        accounts,
+        setAccounts: () => setAccounts([]),
+        connectToWallet,
+        disconnectFromWallet,
+        chainId,
+        useMockData,
+      }}
     >
       {children}
     </WalletContext.Provider>

@@ -20,7 +20,7 @@ export function ActivityFeed({
     );
   }
 
-  if (!txs.length) {
+  if (!txs?.length) {
     return <div className="p-4 text-gray-500">No transactions found.</div>;
   }
 
