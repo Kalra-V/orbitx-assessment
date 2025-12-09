@@ -6,6 +6,33 @@ A multi-chain wallet transaction viewer that displays real-time transaction hist
 
 First, I integrated the wallet to the initial react app. I like to first bring the actual data to the app before building its UI, so I wrote the Alchemy API for fetching the recent transactions. The assessment also required the values in USD, so I made an API call to CoinGecko since it is totally free to use. Now with all required data with us, I formatted all the data into one clean data structure so the UI rendering can be easier. To be quick with the project, I took the approach of AI-assisted development for styling and designing, since these are the things which take the most time for me.
 
+
+<img width="1259" height="1014" alt="Screenshot 2025-12-09 at 9 21 12 PM" src="https://github.com/user-attachments/assets/83ecbf0e-c244-474b-8cb4-5f48bdbead2a" />
+
+<img width="1919" height="1015" alt="Screenshot 2025-12-09 at 9 20 50 PM" src="https://github.com/user-attachments/assets/601e2daf-fc16-4ab7-ba2b-a306980a5357" />
+
+## Configuration
+
+### 1. Environment Variables
+Create `.env` file in project root:
+
+```env
+VITE_ALCHEMY_ETH=your_ethereum_api_key
+VITE_ALCHEMY_POLYGON=your_polygon_api_key
+VITE_ALCHEMY_ARB=your_arbitrum_api_key
+```
+
+**Get Alchemy API keys:** https://www.alchemy.com/ (free tier supports this app)
+
+## Installation & Running
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
+
 ## Architecture & Component Structure
 
 ### Core Architecture
@@ -62,19 +89,6 @@ App (Root)
 - **Tailwind CSS** - Rapid styling without CSS files, excellent for rapid prototyping
 - **date-fns** - Lightweight date formatting (smaller bundle than moment.js)
 
-## Configuration
-
-### 1. Environment Variables
-Create `.env` file in project root:
-
-```env
-VITE_ALCHEMY_ETH=your_ethereum_api_key
-VITE_ALCHEMY_POLYGON=your_polygon_api_key
-VITE_ALCHEMY_ARB=your_arbitrum_api_key
-```
-
-**Get Alchemy API keys:** https://www.alchemy.com/ (free tier supports this app)
-
 ### 2. Supported Chains
 Defined in `src/utils/constants.ts`:
 - Ethereum Mainnet (Chain ID: 1)
@@ -83,15 +97,6 @@ Defined in `src/utils/constants.ts`:
 
 ### 3. Wallet Provider
 Requires MetaMask or compatible Web3 wallet provider injecting `window.ethereum`.
-
-## Installation & Running
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:5173
 
 ## Assumptions & Tradeoffs
 
