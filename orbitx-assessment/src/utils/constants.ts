@@ -23,3 +23,9 @@ export const CHAINS = {
 } as const;
 
 export type ChainKey = keyof typeof CHAINS;
+
+export const CHAIN_IDS_HEX: Record<ChainKey, string> = {
+  ethereum: "0x1",
+  polygon: "0x89",
+  arbitrum: "0xa4b1",
+};
