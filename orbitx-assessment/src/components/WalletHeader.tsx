@@ -16,12 +16,12 @@ export function WalletHeader({ chain }: { chain: ChainKey }) {
   )?.[0] as ChainKey | undefined;
 
   return (
-    <header className="flex justify-between items-center p-4 rounded-lg bg-white border shadow-sm">
+    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 p-4 rounded-lg bg-white border shadow-sm">
       {/* Title */}
       <h1 className="text-lg font-semibold">Wallet Dashboard</h1>
 
       {/* Right side */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
         {/* Chain badge */}
         <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm border">
           <span
@@ -40,7 +40,7 @@ export function WalletHeader({ chain }: { chain: ChainKey }) {
         {walletChainKey !== chain && connected && (
           <button
             onClick={() => switchNetwork(chain)}
-            className="px-3 py-1.5 rounded-full bg-gray-100 border text-gray-700 text-sm hover:bg-gray-200 transition"
+            className="px-3 py-1.5 rounded-full bg-gray-100 border text-gray-700 text-sm hover:bg-gray-200 transition whitespace-nowrap"
           >
             Switch to {CHAINS[chain].name}
           </button>
@@ -60,12 +60,13 @@ export function WalletHeader({ chain }: { chain: ChainKey }) {
             <span className="w-2 h-2 bg-green-500 rounded-full" />
 
             {/* Address */}
-            <span>{short(address!)}</span>
+            <span className="hidden sm:inline">{short(address!)}</span>
+            <span className="sm:hidden">{shortMobile(address!)}</span>
 
             {/* Disconnect */}
             <button
               onClick={disconnectFromWallet}
-              className="text-xs px-2 py-0.5 rounded bg-red-100 text-red-600 hover:bg-red-200"
+              className="text-xs px-2 py-0.5 rounded bg-red-100 text-red-600 hover:bg-red-200 whitespace-nowrap"
             >
               Disconnect
             </button>
@@ -78,4 +79,8 @@ export function WalletHeader({ chain }: { chain: ChainKey }) {
 
 function short(addr: string) {
   return addr.slice(0, 6) + "..." + addr.slice(-4);
+}
+
+function shortMobile(addr: string) {
+  return addr.slice(0, 4) + "..." + addr.slice(-3);
 }

@@ -5,12 +5,12 @@ export function TxItem({ tx }: { tx: NormalizedTx }) {
   const isSent = tx.type === "sent";
 
   return (
-    <div className="p-4 border-b flex flex-col gap-1">
+    <div className="p-3 sm:p-4 border-b flex flex-col gap-1">
       {/* Top row: type + status */}
       <div className="flex justify-between items-center">
         <span
           className={
-            "font-semibold " + (isSent ? "text-red-500" : "text-green-500")
+            "font-semibold text-sm sm:text-base " + (isSent ? "text-red-500" : "text-green-500")
           }
         >
           {isSent ? "Sent" : "Received"}
@@ -18,7 +18,7 @@ export function TxItem({ tx }: { tx: NormalizedTx }) {
 
         <span
           className={
-            "text-xs px-2 py-1 rounded " +
+            "text-xs px-2 py-1 rounded whitespace-nowrap " +
             (tx.status === "confirmed"
               ? "bg-green-100 text-green-600"
               : tx.status === "pending"
@@ -31,7 +31,7 @@ export function TxItem({ tx }: { tx: NormalizedTx }) {
       </div>
 
       {/* Amount */}
-      <div className="text-lg font-medium">
+      <div className="text-base sm:text-lg font-medium break-words">
         {tx.amount} {tx.tokenSymbol}
       </div>
 
@@ -41,16 +41,16 @@ export function TxItem({ tx }: { tx: NormalizedTx }) {
       )}
 
       {/* Timestamp */}
-      <div className="text-xs text-gray-400">
+      <div className="text-xs text-gray-400 break-words">
         {format(tx.timestamp * 1000, "PPpp")}
       </div>
 
       {/* Addresses */}
       <div className="text-xs text-gray-400">
-        <div>
+        <div className="break-all">
           <span className="font-medium">From:</span> {short(tx.from)}
         </div>
-        <div>
+        <div className="break-all">
           <span className="font-medium">To:</span> {short(tx.to)}
         </div>
       </div>
