@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
-import { WalletProvider } from "./context/WalletContext.tsx";
+import { WalletProvider } from "./contexts/WalletContext.tsx";
 
 const queryClient = new QueryClient();
 
